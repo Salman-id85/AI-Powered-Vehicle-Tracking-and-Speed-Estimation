@@ -1,0 +1,11 @@
+flask==2.3.2
+flask_sqlalchemy==3.0.5
+ultralytics==8.0.196   # YOLOv8
+opencv-python==4.8.1.78
+numpy==1.24.3
+pandas==2.0.3
+matplotlib==3.7.2
+tqdm==4.65.0
+scipy==1.11.2
+gunicorn==21.2.0        # for deployment (optional)
+python-dotenv==1.0.0    # environment variables
