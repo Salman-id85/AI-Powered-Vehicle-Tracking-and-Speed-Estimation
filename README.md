@@ -127,10 +127,3 @@ For detailed methodology and results, see Conference_Paper.pdf
 **License**
 This project is licensed under the MIT License.
 
----
-
-**Built with passion for Urban Safety & Intelligent Transportation Systems**
-
----
-
-Would you like me to also prepare a **`CONTRIBUTING.md`** and **`LICENSE`** file so your GitHub looks even more professional?
