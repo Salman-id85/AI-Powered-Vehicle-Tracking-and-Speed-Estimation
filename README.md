@@ -54,10 +54,83 @@ AI-Powered-Vehicle-Tracking-and-Speed-Estimation/
 ```bash
 git clone https://github.com/Salman-id85/AI-Powered-Vehicle-Tracking-and-Speed-Estimation.git
 cd AI-Powered-Vehicle-Tracking-and-Speed-Estimation
+ ```
+2. **Create a virtual environment**
+```bash
 python -m venv venv
 source venv/bin/activate    # On Linux/Mac
 venv\Scripts\activate       # On Windows
+```
+3. **Install dependencies**
+```bash
 pip install -r requirements.txt
+```
+4. **Run the Flask app**
+```bash
 python app.py
+```
+5. **Open in browser**
+```bash
 http://127.0.0.1:5000/
+```
 
+---
+
+**Usage**
+
+1. Upload a traffic video (MP4/AVI, max 500 MB).
+2. System detects, tracks, and estimates speed of vehicles.
+3. Download annotated video and Excel report with speed stats.
+
+---
+
+**Results**
+
+- Detection Precision: 0.94
+- Tracking Success Rate: 0.91
+- Speed Estimation Error (MAE): 2.5 km/h
+
+---
+
+**Sample Output:**
+
+- Annotated Video
+- Excel Report with vehicle IDs, classes, and speeds
+
+---
+
+**Research Paper**
+
+For detailed methodology and results, see Conference_Paper.pdf
+
+---
+
+**Future Enhancements**
+
+- Cloud-based video storage & processing
+- Real-time violation detection (overspeed alerts)
+- License Plate Recognition (LPR)
+- Multi-camera integration for crowded zones
+
+---
+
+**Contributors**
+
+- Salman S
+- Prasanth Kumar R
+- Sai Niresh N
+- Guided by Mrs. P Revathi (Assistant Professor, CSE Dept)
+- H.O.D: Dr. K. Abrar Ahmed (Assistant Professor, CSE Dept)
+
+---
+
+**License**
+This project is licensed under the MIT License.
+
+---
+
+**Built with passion for Urban Safety & Intelligent Transportation Systems**
+
+---
+
+Would you like me to also prepare a **`CONTRIBUTING.md`** and **`LICENSE`** file so your GitHub looks even more professional?
