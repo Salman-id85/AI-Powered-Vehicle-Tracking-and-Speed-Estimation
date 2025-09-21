@@ -102,7 +102,7 @@ http://127.0.0.1:5000/
 
 **Research Paper**
 
-For detailed methodology and results, see Conference_Paper.pdf
+For detailed methodology and results, see [Conference_Paper.pdf](report_project/Conference_Paper.pdf)
 
 ---
 
