@@ -31,5 +31,33 @@ The system integrates **YOLOv8**, **ByteTrack**, and **OpenCV** within a **Flask
 
 ---
 
-## 📂 Project Structure  
+## Project Structure
+
+AI-Powered-Vehicle-Tracking-and-Speed-Estimation/
+│── app.py # Flask main application
+│── requirements.txt # Dependencies
+│── static/ # CSS, JS, assets
+│── templates/ # HTML templates
+│── models/ # Pre-trained YOLOv8 weights
+│── utils/ # Helper functions (tracking, speed calc, etc.)
+│── uploads/ # Uploaded videos
+│── results/ # Processed outputs (videos, reports)
+│── README.md # Project documentation
+│── Conference_Paper.pdf # Research paper
+
+
+---
+
+## Installation  
+
+1. **Clone the repository**  
+```bash
+git clone https://github.com/Salman-id85/AI-Powered-Vehicle-Tracking-and-Speed-Estimation.git
+cd AI-Powered-Vehicle-Tracking-and-Speed-Estimation
+python -m venv venv
+source venv/bin/activate    # On Linux/Mac
+venv\Scripts\activate       # On Windows
+pip install -r requirements.txt
+python app.py
+http://127.0.0.1:5000/
 
