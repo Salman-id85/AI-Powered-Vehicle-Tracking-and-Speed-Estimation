@@ -32,6 +32,7 @@ The system integrates **YOLOv8**, **ByteTrack**, and **OpenCV** within a **Flask
 ---
 
 ## Project Structure
+```bach
 
 AI-Powered-Vehicle-Tracking-and-Speed-Estimation/
 │── app.py # Flask main application
@@ -45,7 +46,7 @@ AI-Powered-Vehicle-Tracking-and-Speed-Estimation/
 │── README.md # Project documentation
 │── Conference_Paper.pdf # Research paper
 
-
+```
 ---
 
 ## Installation  
