@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="D:\New folder (2)\static\css\styles.css">
+  <title>AI Vehicle Tracking System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <!-- Background Video -->
+  <video class="background-video" autoplay muted loop preload="auto">
+    <source src="{{ url_for('static', filename='videos/welcome_frist.mp4') }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Company Logo" class="logo" />
+      <button class="hamburger" aria-label="Toggle navigation">☰</button>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#upload">Upload</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Welcome Section -->
+<section class="welcome-section" id="home" aria-label="Welcome to Our Website">
+  <video class="background-video" autoplay muted loop preload="auto" playsinline>
+    <source src="static/videos/welcome_frist.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="welcome-content">
+    <h2>Welcome to Our AI Vehicle Tracking System</h2>
+    <p>Upload videos to track vehicles with AI-powered analysis.</p>
+    <a href="#about" class="btn">Get Started</a>
+  </div>
+</section>
+
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="about-card">
+      <div class="about-text">
+        <h2>About Us</h2>
+        <div class="accent-bar"></div>
+        <p>We are a team dedicated to advancing vehicle tracking through AI and computer vision.</p>
+        <p class="mission">"Track. Analyze. Optimize."</p>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Videos Processed</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Clients</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Years</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-image">
+        <img src="{{ url_for('static', filename='images/preduc.png') }}" alt="Team Working" class="reveal-img" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section" id="services">
+    <div class="services-header">
+      <h2>Our Services</h2>
+      <p>Comprehensive vehicle tracking and analysis solutions.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Vehicle Detection</h3>
+        <p>Identify cars, trucks, and more using state-of-the-art AI.</p>
+      </div>
+      <div class="service-card">
+        <h3>Speed Tracking</h3>
+        <p>Measure vehicle speeds with high accuracy.</p>
+      </div>
+      <div class="service-card">
+        <h3>Data Analysis</h3>
+        <p>Generate detailed reports for traffic insights.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upload Section -->
+  <section class="upload-section" id="upload">
+    <div class="upload-container">
+      <h2>Upload Vehicle Tracking Video</h2>
+      <p>Upload your video footage for AI-powered vehicle tracking and analysis.</p>
+      <!-- Flashed Messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="status-message {{ 'success' if category == 'message' else 'error' }}">
+              {{ message }}
+              <button type="button" class="btn-close">×</button>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <form method="post" enctype="multipart/form-data" id="uploadForm">
+        Dot: true
+        <div class="upload-area" id="uploadArea">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Drag & Drop or <span>Browse Files</span></p>
+          <input type="file" id="videoInput" name="video" accept="video/mp4,video/avi,video/mov" hidden required>
+        </div>
+        <button type="submit" id="uploadButton" class="btn">
+          <span>Upload Video</span>
+          <i class="fas fa-upload"></i>
+        </button>
+      </form>
+      <div class="status-message" id="statusMessage"></div>
+    </div>
+  </section>
+
+  <!-- Team Members Section -->
+  <section class="team-members" id="team">
+    <div class="section-header">
+      <h2>Our Team</h2>
+      <p class="subtitle">Meet the experts behind our AI solutions.</p>
+    </div>
+    <div class="team-grid">
+      <div class="member-card">
+        <div class="profile-card">
+          <h1>Salman S</h1>
+          <h2>Computer Vision Expert</h2>
+          <p>Specializes in object detection and tracking algorithms.</p>
+          <div class="skills">
+            <div class="skill">
+              <span>YOLO</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 90%;"></div>
+              </div>
+            </div>
+            <div class="skill">
+              <span>OpenCV</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 85%;"></div>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="full-profile">Full Profile</a>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="profile-card">
+          <h1>Sai Niresh N</h1>
+          <h2>Backend Developer</h2>
+          <p>Builds robust APIs and data pipelines.</p>
+          <div class="skills">
+            <div class="skill">
+              <span>Flask</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 80%;"></div>
+              </div>
+            </div>
+            <div class="skill">
+              <span>Excel</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 75%;"></div>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="full-profile">Full Profile</a>
+        </div>
+      </div>
+      <div class="member-card">
+        <div class="profile-card">
+          <h1>Prasanth Kumar R</h1>
+          <h2>Frontend Developer</h2>
+          <p>Creates intuitive and responsive user interfaces.</p>
+          <div class="skills">
+            <div class="skill">
+              <span>HTML</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 85%;"></div>
+              </div>
+            </div>
+            <div class="skill">
+              <span>JavaScript</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 80%;"></div>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="full-profile">Full Profile</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <div class="footer-contact" id="contact">
+    <div class="contact-container">
+      <div class="contact-header">
+        <h3>Contact Us</h3>
+        <p>Have questions or want to discuss a project? Reach out to our team.</p>
+      </div>
+      <form class="professional-form" id="contactForm" method="post" action="{{ url_for('contact') }}">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="John Doe">
+            <span class="input-icon"><i class="fas fa-user"></i></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="john@example.com">
+            <span class="input-icon"><i class="fas fa-envelope"></i></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" required placeholder="Project Inquiry">
+          <span class="input-icon"><i class="fas fa-tag"></i></span>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+          <span class="input-icon"><i class="fas fa-comment"></i></span>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="submit-btn">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="D:\New folder (2)\static\js\script.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

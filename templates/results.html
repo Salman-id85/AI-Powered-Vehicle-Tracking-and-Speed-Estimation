@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vehicle Tracking Results</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Root variables for theming */
+        :root {
+            --bg-dark: #121212;
+            --bg-darker: #0d0d0d;
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #252525;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --primary-color: #6c5ce7;
+            --primary-hover: #5649c0;
+            --success-color: #00b894;
+            --error-color: #d63031;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --glow-effect: 0 0 15px rgba(108, 92, 231, 0.5);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin: 30px 0 20px;
+            background: linear-gradient(to right, var(--primary-color), #00cec9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 95%;
+            padding: 30px;
+            background-color: var(--bg-card);
+            border-radius: 10px;
+            box-shadow: var(--glow-effect);
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--glow-effect);
+        }
+
+        video {
+            width: 100%;
+            max-height: 500px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .search-form input[type="text"] {
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px 0 0 5px;
+            background-color: var(--bg-darker);
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.3s;
+            flex-grow: 1;
+            max-width: 400px;
+        }
+
+        .search-form input[type="text"]:focus {
+            border-color: var(--primary-hover);
+        }
+
+        .search-form button {
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            background-color: var(--primary-color);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-form button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            background-color: var(--success-color);
+            color: var(--bg-dark);
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .download-btn:hover {
+            background-color: #00947b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .results {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .result-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: var(--bg-darker);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .result-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--glow-effect);
+        }
+
+        .result-item p {
+            margin: 8px 0;
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .result-item p strong {
+            color: var(--text-primary);
+            margin-right: 5px;
+        }
+
+        .flash-messages {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .flash-message {
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .flash-message.message {
+            background-color: rgba(0, 184, 148, 0.2);
+            border: 1px solid var(--success-color);
+            color: var(--success-color);
+        }
+
+        .flash-message.error {
+            background-color: rgba(214, 48, 49, 0.2);
+            border: 1px solid var(--error-color);
+            color: var(--error-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .search-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-form input[type="text"] {
+                border-radius: 5px;
+                margin-bottom: 10px;
+                max-width: 100%;
+                flex-grow: unset;
+            }
+
+            .search-form button {
+                border-radius: 5px;
+                border-left: none;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--primary-hover);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Vehicle Tracking Results</h1>
+    <div class="container">
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-messages" role="alert">
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {{ message }}
+                <button type="button" class="btn-close" aria-label="Close message">×</button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Video Playback -->
+        {% if video_file %}
+        <video controls aria-label="Processed vehicle tracking video">
+            <source src="{{ url_for('static', filename=video_file) }}" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        {% else %}
+        <p class="error">No video available. Please upload a video first.</p>
+        {% endif %}
+
+        <!-- Search Form -->
+        <form class="search-form" method="POST" action="{{ url_for('results') }}" role="search"
+            aria-label="Search vehicle tracker ID">
+            <input type="text" name="tracker_id" id="trackerId" placeholder="Enter Vehicle Tracker ID"
+                value="{{ vehicle_id if vehicle_id is not none else '' }}" aria-label="Vehicle Tracker ID" required />
+            <button type="submit" id="queryButton" class="btn" aria-label="Search vehicle tracker ID">
+                <span>Search</span>
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </button>
+        </form>
+
+        <!-- Download Button -->
+        <a href="{{ url_for('download_excel') }}" class="btn download-btn" role="button"
+            aria-label="Download vehicle data report">
+            <span>Download Report</span>
+            <i class="fas fa-download" aria-hidden="true"></i>
+        </a>
+
+        <!-- Search Results -->
+        <div class="results" aria-live="polite" aria-atomic="true">
+            {% if data is not none %}
+            {% if data.empty %}
+            <p class="error">No results found for Vehicle Tracker ID: {{ vehicle_id }}.</p>
+            {% else %}
+            {% for row in data.itertuples() %}
+            <div class="result-item">
+                <p><strong>Frame ID:</strong> {{ row.frame_id }}</p>
+                <p><strong>Tracker ID:</strong> {{ row.tracker_id }}</p>
+                <p><strong>Vehicle Type:</strong> {{ row.vehicle_type }}</p>
+                <p><strong>Speed (km/h):</strong> {{ row.speed|round(1) }}</p>
+                <p><strong>Distance (m):</strong> {{ row.distance|round(1) }}</p>
+                <p><strong>Timestamp:</strong> {{ row.timestamp }}</p>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% else %}
+            <p>Enter a Tracker ID to search for vehicle data.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // Close flash message on button click
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('btn-close')) {
+                e.target.parentElement.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
